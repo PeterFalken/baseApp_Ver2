@@ -1,20 +1,71 @@
 package com.bitjester.apps.common.login;
 
+import java.util.Date;
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.inject.Named;
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 
+import com.bitjester.apps.common.entities.AppUser;
+import com.bitjester.apps.common.utils.BookKeeper;
+import com.bitjester.apps.common.utils.HashUtil;
+
+@Named
 @Stateless
 public class LoginManager {
 	@Inject
 	EntityManager em;
-	
-	public Boolean checkCredentials(String user, String Password){
-		return Boolean.TRUE;
-	}
-	
-	public void changePassword(){
-		//em.find(arg0, arg1)
+
+	public void changePassword(AppUser user, String newPassword) throws Exception {
+		user = em.merge(user);
+		user.setPassword(HashUtil.calc_HashSHA(newPassword));
+		if (user.getMustChangePassword())
+			user.setMustChangePassword(Boolean.FALSE);
+		logOutUser(user);
 	}
 
+	public AppUser checkCredentials(String user, String password) throws Exception {
+		String query = "SELECT u FROM User u WHERE u.username =:uname";
+		query += " AND u.active =TRUE AND u.password =:pass";
+		TypedQuery<AppUser> tQuery = em.createQuery(query, AppUser.class);
+		tQuery.setParameter("uname", user.trim());
+		tQuery.setParameter("pass", HashUtil.calc_HashSHA(password));
+		List<AppUser> results = tQuery.getResultList();
+
+		if (results.isEmpty()) {
+			// logger.info("User named '" + user + "' not found.");
+			return null;
+		} else if (results.size() > 1) {
+			// logger.info("Cannot have more than one user with the same username!.");
+			throw new IllegalStateException("Cannot have more than one user with the same username!.");
+		} else {
+			BookKeeper.update(results.get(0), "0 - System");
+			results.get(0).setLastLogin(new Date(System.currentTimeMillis()));
+			em.flush();
+			return results.get(0);
+		}
+	}
+
+	public AppUser getUserForImpersonation(Long id) throws Exception {
+		return em.find(AppUser.class, id);
+	}
+
+	public void logOutUser(AppUser user) throws Exception {
+		user = em.merge(user);
+		BookKeeper.update(user, "0 - System");
+		user.setLastLogout(new Date(System.currentTimeMillis()));
+		em.flush();
+	}
+
+	public void resetPassword(Long userID) throws Exception {
+		AppUser user = em.find(AppUser.class, userID);
+		BookKeeper.update(user, "0 - System");
+		user.setPassword(HashUtil.calc_HashSHA("123456"));
+		user.setMustChangePassword(Boolean.TRUE);
+		em.merge(user);
+		em.flush();
+	}
 }

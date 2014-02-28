@@ -2,19 +2,27 @@ package com.bitjester.apps.common.utils;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.logging.Logger;
 
-import javax.enterprise.context.SessionScoped;
+import javax.faces.bean.NoneScoped;
 import javax.inject.Inject;
 
 import com.bitjester.apps.common.BaseEntity;
 import com.bitjester.apps.common.login.AppSession;
 
-@SessionScoped
+@NoneScoped
 public class BookKeeper implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Inject
 	private AppSession userSession;
+	
+	@Inject
+	private static Logger logger;
+	
+	public static void log(String message){
+		logger.info(message);
+	}
 	
 	private String userInfo() {
 		if (null != userSession && null != userSession.getActiveUser())

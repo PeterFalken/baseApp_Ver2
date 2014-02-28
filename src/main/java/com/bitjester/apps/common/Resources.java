@@ -1,6 +1,9 @@
 package com.bitjester.apps.common;
 
+import java.util.logging.Logger;
+
 import javax.enterprise.inject.Produces;
+import javax.enterprise.inject.spi.InjectionPoint;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
@@ -21,5 +24,10 @@ public class Resources {
 	public FacesContext produceFacesContext() {
 		return FacesContext.getCurrentInstance();
 	}
-
+	
+	@Produces
+	public Logger getLogger(InjectionPoint ip) {
+		String category = ip.getMember().getDeclaringClass().getName();
+		return Logger.getLogger(category);
+	}
 }

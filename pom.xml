@@ -92,6 +92,12 @@
 			<artifactId>richfaces</artifactId>
 			<version>5.0.0.Alpha3</version>
 		</dependency>
+		<!-- Import Apache Common Codecs 1.9 -->
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+			<version>1.9</version>
+		</dependency>
 	</dependencies>
 
 	<profiles>
