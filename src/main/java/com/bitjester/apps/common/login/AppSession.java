@@ -17,21 +17,21 @@ import com.bitjester.apps.common.utils.HashUtil;
 
 @Named
 @SessionScoped
-public class AppSession implements Serializable{
+public class AppSession implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Inject
 	private String appName;
-	
+
 	@Inject
 	private Credentials creds;
-	
+
 	@Inject
 	LoginManager lm;
-	
+
 	private AppUser activeUser;
 	private AppUser systemUser;
-	
+
 	// -- System User and Active User.
 	// -- Useful for Impersonation
 	@SystemUser
@@ -40,7 +40,7 @@ public class AppSession implements Serializable{
 	public AppUser getSystemUser() {
 		return systemUser;
 	}
-	
+
 	@ActiveUser
 	@Named
 	@Produces
@@ -49,7 +49,7 @@ public class AppSession implements Serializable{
 			return systemUser;
 		return activeUser;
 	}
-	
+
 	// Impersonate user identified by Long id - logs current user name.
 	public void impersonate(Long id) throws Exception {
 		AppUser user = lm.getUserForImpersonation(id);
@@ -58,9 +58,9 @@ public class AppSession implements Serializable{
 			activeUser.setActiveRole(activeUser.getAppRole(appName));
 		}
 	}
-	
+
 	// -- Login + Credentials methods
-	
+
 	public void checkCredentials() throws Exception {
 		AppUser user = lm.checkCredentials(creds.getUsername(), creds.getPassword());
 		if (user != null) {
@@ -74,7 +74,7 @@ public class AppSession implements Serializable{
 		} else
 			FacesUtil.addMessage("Credenciales incorrectas.");
 	}
-	
+
 	public void changePassword() throws Exception {
 		// Verify if current password matches the one on the database
 		if (!systemUser.getPassword().equals(HashUtil.calc_HashSHA(creds.getPassword()))) {
@@ -96,10 +96,10 @@ public class AppSession implements Serializable{
 
 		lm.changePassword(systemUser, creds.getNewPassword1());
 		systemUser = null;
-		//FacesUtil.invalidateSession();
+		// FacesUtil.invalidateSession();
 		FacesUtil.navTo("error/pchanged.xhtml");
 	}
-	
+
 	public void logout() throws Exception {
 		if (null != systemUser) {
 			lm.logOutUser(systemUser);
@@ -110,15 +110,18 @@ public class AppSession implements Serializable{
 		FacesUtil.invalidateSession();
 		FacesUtil.navTo("index.html");
 	}
-	
+
 	@PreDestroy
-	public void cleanUp() throws Exception {
-		if (null != systemUser) {
-			lm.logOutUser(systemUser);
+	public void cleanUp() {
+		try {
+			if (null != systemUser)
+				lm.logOutUser(systemUser);
+			systemUser = null;
+			activeUser = null;
+			if (null != FacesContext.getCurrentInstance())
+				FacesUtil.invalidateSession();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
 		}
-		systemUser = null;
-		activeUser = null;
-		if (null != FacesContext.getCurrentInstance())
-			FacesUtil.invalidateSession();
 	}
 }
