@@ -3,8 +3,8 @@ package com.bitjester.apps.common.login;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
-@RequestScoped
 @Named
+@RequestScoped
 public class Credentials {
 
 	private String username;

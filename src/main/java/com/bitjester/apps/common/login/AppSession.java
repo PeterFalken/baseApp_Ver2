@@ -60,7 +60,6 @@ public class AppSession implements Serializable {
 	}
 
 	// -- Login + Credentials methods
-
 	public void checkCredentials() throws Exception {
 		AppUser user = lm.checkCredentials(creds.getUsername(), creds.getPassword());
 		if (user != null) {
