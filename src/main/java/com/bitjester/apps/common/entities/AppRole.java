@@ -10,13 +10,12 @@ import javax.persistence.UniqueConstraint;
 import com.bitjester.apps.common.BaseEntity;
 
 @Entity
-@Table(name = "roles", uniqueConstraints = @UniqueConstraint(columnNames = {
-		"system_user", "application" }))
+@Table(name = "roles", uniqueConstraints = @UniqueConstraint(columnNames = { "system_user", "application" }))
 public class AppRole extends BaseEntity {
 	private static final long serialVersionUID = 1L;
 
 	@ManyToOne
-	@JoinColumn
+	@JoinColumn(name = "system_user")
 	private AppUser system_user;
 	@Column(nullable = false, length = 20)
 	private String application;
