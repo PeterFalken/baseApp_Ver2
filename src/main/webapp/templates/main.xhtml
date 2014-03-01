@@ -2,11 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:r="http://richfaces.org">
 
-<!-- The template for our app, defines some regions and imports styles -->
 <h:head>
 	<ui:insert name="head" />
 </h:head>
+
 <h:body>
+	<r:status onstart="#{r:component('statPane')}.show();" onstop="#{r:component('statPane')}.hide();" />
+	<r:popupPanel id="statPane" autosized="true" modal="true">
+		<h:graphicImage library="images" name="wait.gif" />
+	</r:popupPanel>
+	
 	<ui:insert name="content" />
 	<ui:insert name="footer" />
 </h:body>

@@ -59,11 +59,11 @@
 										&nbsp;
 										<r:commandLink actionListener="#{login.impersonate(u.id)}" execute="@this"
 											rendered="#{login.currentUser.activeRole == 'sadmin'}">
-											<h:graphicImage library="images/icons" name="impersonate.gif" alt="Impersonate" />
+											<h:graphicImage library="images/icons" name="yellow_lamp.gif" alt="Impersonate" />
 										</r:commandLink>
 										&nbsp;
 										<r:commandLink actionListener="#{loginManager.resetPassword(u.id)}" execute="@this">
-											<h:graphicImage library="images/icons" name="reset.gif" alt="Reset password" />
+											<h:graphicImage library="images/icons" name="reload.gif" alt="Reset password" />
 										</r:commandLink>
 									</r:column>
 								</r:dataTable>
@@ -93,8 +93,6 @@
 								<h:selectOneMenu value="#{managedUser.activeRole}" required="true">
 									<f:selectItem itemLabel="---" itemValue="---" noSelectionOption="true" />
 									<f:selectItem itemLabel="Admin" itemValue="admin" />
-									<f:selectItem itemLabel="Admin II" itemValue="admin2" />
-									<f:selectItem itemLabel="Super Admin" itemValue="sadmin" />
 									<f:selectItem itemLabel="User" itemValue="user" />
 								</h:selectOneMenu>
 							</h:panelGrid>
