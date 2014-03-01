@@ -38,7 +38,7 @@ public class ViewUsers implements Serializable {
 		query += " ORDER BY letter";
 		List<String> results = em.createQuery(query, String.class).getResultList();
 		results.add(0, "-");
-		System.out.println("There are " + results.size() + " letters.");
+		//System.out.println("There are " + results.size() + " letters.");
 		return results;
 	}
 
@@ -46,7 +46,9 @@ public class ViewUsers implements Serializable {
 	public List<AppUser> getUsersForLetter(String letter) throws Exception {
 		String query = "FROM AppUser WHERE username LIKE '" + letter + "%'";
 		query += " ORDER BY username";
-		return em.createQuery(query, AppUser.class).getResultList();
+		List<AppUser> results = em.createQuery(query, AppUser.class).getResultList();
+		System.out.println("There are " + results.size() + " users.");
+		return results;
 	}
 
 	// -- Persistence & form methods
