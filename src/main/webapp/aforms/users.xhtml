@@ -10,9 +10,9 @@
 				<r:region>
 					<h2>Users</h2>
 					<r:tabPanel switchType="ajax">
-						<r:repeat value="#{view_users.userStartLetters}" var="letter">
+						<r:repeat value="#{viewUsers.userStartLetters}" var="letter">
 							<r:tab header="#{letter}" switchType="ajax">
-								<r:dataTable value="#{view_users.getUsersForLetter(letter)}" var="u" rowKeyVar="rowNum">
+								<r:dataTable value="#{viewUsers.getUsersForLetter(letter)}" var="u" rowKeyVar="rowNum">
 									<r:column>
 										<f:facet name="header">#</f:facet>
 										<h:outputText value="#{rowNum+1}." />
@@ -49,11 +49,11 @@
 										<f:facet name="header">.</f:facet>
 										<r:commandLink>
 											<h:graphicImage library="images/icons" name="edit.gif" alt="Edit" />
-											<r:ajax event="click" execute="@this" listener="#{view_users.load(u.id)}"
+											<r:ajax event="click" execute="@this" listener="#{viewUsers.load(u.id)}"
 												oncomplete="#{r:component('popup')}.show();" />
 										</r:commandLink>
 										&nbsp;
-										<r:commandLink actionListener="#{view_users.remove(u.id)}" execute="@this">
+										<r:commandLink actionListener="#{viewUsers.remove(u.id)}" execute="@this">
 											<h:graphicImage library="images/icons" name="delete.gif" alt="Delete" />
 										</r:commandLink>
 										&nbsp;
@@ -99,11 +99,11 @@
 								</h:selectOneMenu>
 							</h:panelGrid>
 							<r:commandButton value="Save">
-								<r:ajax event="click" listener="#{view_users.store}"
+								<r:ajax event="click" listener="#{viewUsers.store}"
 									oncomplete="if(#{empty facesContext.maximumSeverity}) {#{r:component('popup')}.hide();}" />
 							</r:commandButton>
 							<r:commandButton value="Cancel" immediate="true">
-								<r:ajax event="click" execute="@this" listener="#{view_users.refresh}"
+								<r:ajax event="click" execute="@this" listener="#{viewUsers.refresh}"
 									oncomplete="#{r:component('popup')}.hide();" />
 							</r:commandButton>
 						</fieldset>

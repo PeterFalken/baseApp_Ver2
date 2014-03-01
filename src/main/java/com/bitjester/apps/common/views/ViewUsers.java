@@ -16,7 +16,7 @@ import com.bitjester.apps.common.utils.HashUtil;
 
 @Named
 @ViewScoped
-public class View_Users implements Serializable {
+public class ViewUsers implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Inject
