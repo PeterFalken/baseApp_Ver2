@@ -58,7 +58,7 @@
 										</r:commandLink>
 										&nbsp;
 										<r:commandLink actionListener="#{login.impersonate(u.id)}" execute="@this"
-											rendered="#{login.currentUser.activeRole == 'sadmin'}">
+											rendered="#{appSession.systemUser.activeRole == 'admin'}">
 											<h:graphicImage library="images/icons" name="yellow_lamp.gif" alt="Impersonate" />
 										</r:commandLink>
 										&nbsp;

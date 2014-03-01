@@ -3,15 +3,19 @@
 	xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:r="http://richfaces.org">
 
 <h:head>
+	<h:outputStylesheet library="bootstrap/css" name="bootstrap.css" />
+
 	<ui:insert name="head" />
 </h:head>
 
 <h:body>
+	<h:outputScript library="bootstrap/js" name="bootstrap.js" />
+	
 	<r:status onstart="#{r:component('statPane')}.show();" onstop="#{r:component('statPane')}.hide();" />
 	<r:popupPanel id="statPane" autosized="true" modal="true">
 		<h:graphicImage library="images" name="wait.gif" />
 	</r:popupPanel>
-	
+
 	<ui:insert name="content" />
 	<ui:insert name="footer" />
 </h:body>
