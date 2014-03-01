@@ -49,7 +49,7 @@
 										<f:facet name="header">.</f:facet>
 										<r:commandLink>
 											<h:graphicImage library="images/icons" name="edit.gif" alt="Edit" />
-											<r:ajax execute="@this" listener="#{view_users.load(u.id)}" oncomplete="#{rich:component('popup')}.show();" />
+											<r:ajax execute="@this" listener="#{view_users.load(u.id)}" oncomplete="#{r:component('popup')}.show();" />
 										</r:commandLink>
 										&nbsp;
 										<r:commandLink actionListener="#{view_users.remove(u.id)}" execute="@this">
@@ -99,10 +99,10 @@
 							</h:panelGrid>
 							<r:commandButton value="Save">
 								<r:ajax listener="#{view_users.store}"
-									oncomplete="if(#{empty facesContext.maximumSeverity}) {#{rich:component('popup')}.hide();}" />
+									oncomplete="if(#{empty facesContext.maximumSeverity}) {#{r:component('popup')}.hide();}" />
 							</r:commandButton>
 							<r:commandButton value="Cancel" immediate="true">
-								<r:ajax execute="@this" listener="#{view_users.refresh}" oncomplete="#{rich:component('popup')}.hide();" />
+								<r:ajax execute="@this" listener="#{view_users.refresh}" oncomplete="#{r:component('popup')}.hide();" />
 							</r:commandButton>
 						</fieldset>
 					</r:region>

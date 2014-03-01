@@ -26,7 +26,7 @@ public class UserWatchdog {
 	EntityManager em;
 
 	@PostConstruct
-	private void checkForUsers() throws Exception {
+	private void checkForUsers() {
 		try {
 			checkForUser("admin", "Administrator User");
 			checkForUser("test", "Test User");
