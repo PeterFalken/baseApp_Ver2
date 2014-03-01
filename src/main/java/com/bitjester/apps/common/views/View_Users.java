@@ -16,7 +16,7 @@ import com.bitjester.apps.common.utils.HashUtil;
 
 @Named
 @ViewScoped
-public class View_User implements Serializable {
+public class View_Users implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Inject
@@ -38,7 +38,6 @@ public class View_User implements Serializable {
 		query += " ORDER BY letter";
 		List<String> results = em.createQuery(query, String.class).getResultList();
 		results.add(0, "-");
-		;
 		return results;
 	}
 

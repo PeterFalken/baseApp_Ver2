@@ -59,6 +59,18 @@ public class AppSession implements Serializable {
 		}
 	}
 
+	public boolean isLoggedIn() {
+		return (null != systemUser) && !(systemUser.getMustChangePassword());
+	}
+
+	public void checkRole(String role) throws Exception {
+		if (isLoggedIn()) {
+			if (null != role && !systemUser.getActiveRole().contains(role))
+				FacesUtil.navTo("index.html");
+		} else
+			FacesUtil.navTo("index.html");
+	}
+
 	// -- Login + Credentials methods
 	public void checkCredentials() throws Exception {
 		AppUser user = lm.checkCredentials(creds.getUsername(), creds.getPassword());

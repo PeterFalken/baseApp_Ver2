@@ -4,13 +4,13 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.logging.Logger;
 
-import javax.faces.bean.NoneScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 
 import com.bitjester.apps.common.BaseEntity;
 import com.bitjester.apps.common.login.AppSession;
 
-@NoneScoped
+@SessionScoped
 public class BookKeeper implements Serializable {
 	private static final long serialVersionUID = 1L;
 	

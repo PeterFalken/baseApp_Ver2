@@ -2,15 +2,15 @@ package com.bitjester.apps.common;
 
 import java.io.Serializable;
 
-import javax.ejb.Stateless;
-import javax.faces.bean.NoneScoped;
+import javax.ejb.Stateful;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
 import com.bitjester.apps.common.utils.BookKeeper;
 
-@NoneScoped
-@Stateless
+@SessionScoped
+@Stateful
 public class DataManager implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
