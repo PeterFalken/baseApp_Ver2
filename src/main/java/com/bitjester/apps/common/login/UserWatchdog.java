@@ -1,8 +1,6 @@
 package com.bitjester.apps.common.login;
 
 import java.util.List;
-import java.util.logging.Logger;
-
 import javax.annotation.PostConstruct;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
@@ -21,7 +19,7 @@ public class UserWatchdog {
 	private String appName;
 
 	@Inject
-	private Logger logger;
+	private BookKeeper bk;
 
 	@Inject
 	EntityManager em;
@@ -37,7 +35,7 @@ public class UserWatchdog {
 	}
 
 	private void checkForUser(String username, String nameOfUser) throws Exception {
-		logger.info("App_StartUp: Looking for user: " + username + ".");
+		bk.log("App_StartUp: Looking for user: " + username + ".");
 
 		String qString = "SELECT u FROM AppUser u WHERE u.username=:username";
 		TypedQuery<AppUser> tQuery = em.createQuery(qString, AppUser.class);
@@ -45,11 +43,11 @@ public class UserWatchdog {
 		List<AppUser> results = tQuery.getResultList();
 
 		if (results.isEmpty()) {
-			logger.info("App_StartUp: User named '" + username + "' not found.");
-			logger.info("App_StartUp: Injecting user '" + username + "' into database.");
+			bk.log("App_StartUp: User named '" + username + "' not found.");
+			bk.log("App_StartUp: Injecting user '" + username + "' into database.");
 			injectUser(username, nameOfUser);
 		} else
-			logger.info("App_StartUp: User named '" + username + "' was found.");
+			bk.log("App_StartUp: User named '" + username + "' was found.");
 	}
 
 	private void injectUser(String username, String nameOfUser) throws Exception {
