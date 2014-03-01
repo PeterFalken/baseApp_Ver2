@@ -27,29 +27,28 @@ public class UserWatchdog {
 
 	@PostConstruct
 	private void checkForUsers() throws Exception {
-		checkForUser("admin", "Administrator User");
-		checkForUser("test", "Test User");
-	}
-
-	private void checkForUser(String username, String nameOfUser) {
 		try {
-			bk.log("App_StartUp: Looking for user: " + username + ".");
-
-			String qString = "SELECT u FROM User u WHERE u.username=:username";
-			TypedQuery<AppUser> tQuery = em.createQuery(qString, AppUser.class);
-			tQuery.setParameter("username", username);
-			List<AppUser> results = tQuery.getResultList();
-
-			if (results.isEmpty()) {
-				bk.log("App_StartUp: User named '" + username + "' not found.");
-				bk.log("App_StartUp: Injecting user '" + username + "' into database.");
-				injectUser(username, nameOfUser);
-			} else
-				bk.log("App_StartUp: User named '" + username + "' was found.");
+			checkForUser("admin", "Administrator User");
+			checkForUser("test", "Test User");
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
+	}
 
+	private void checkForUser(String username, String nameOfUser) throws Exception {
+		bk.log("App_StartUp: Looking for user: " + username + ".");
+
+		String qString = "SELECT u FROM User u WHERE u.username=:username";
+		TypedQuery<AppUser> tQuery = em.createQuery(qString, AppUser.class);
+		tQuery.setParameter("username", username);
+		List<AppUser> results = tQuery.getResultList();
+
+		if (results.isEmpty()) {
+			bk.log("App_StartUp: User named '" + username + "' not found.");
+			bk.log("App_StartUp: Injecting user '" + username + "' into database.");
+			injectUser(username, nameOfUser);
+		} else
+			bk.log("App_StartUp: User named '" + username + "' was found.");
 	}
 
 	private void injectUser(String username, String nameOfUser) throws Exception {
