@@ -44,9 +44,10 @@ public class ViewUsers implements Serializable {
 
 	@RequestScoped
 	public List<AppUser> getUsersForLetter(String letter) throws Exception {
-		String query = "FROM AppUser WHERE username LIKE '" + letter + "%'";
+		String query = "FROM AppUser WHERE UPPER(username) LIKE '" + letter + "%'";
 		query += " ORDER BY username";
 		List<AppUser> results = em.createQuery(query, AppUser.class).getResultList();
+		System.out.println(query);
 		System.out.println("There are " + results.size() + " users.");
 		return results;
 	}
