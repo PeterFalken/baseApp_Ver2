@@ -1,6 +1,7 @@
 package com.bitjester.apps.common.login;
 
 import java.util.List;
+
 import javax.annotation.PostConstruct;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
@@ -19,7 +20,10 @@ public class UserWatchdog {
 	private String appName;
 
 	@Inject
-	private EntityManager em;
+	private BookKeeper bk;
+
+	@Inject
+	EntityManager em;
 
 	@PostConstruct
 	private void checkForUsers() throws Exception {
@@ -27,20 +31,25 @@ public class UserWatchdog {
 		checkForUser("test", "Test User");
 	}
 
-	private void checkForUser(String username, String nameOfUser) throws Exception {
-		BookKeeper.log("App_StartUp: Looking for user: " + username + ".");
+	private void checkForUser(String username, String nameOfUser) {
+		try {
+			bk.log("App_StartUp: Looking for user: " + username + ".");
 
-		String qString = "SELECT u FROM User u WHERE u.username=:username";
-		TypedQuery<AppUser> tQuery = em.createQuery(qString, AppUser.class);
-		tQuery.setParameter("username", username);
-		List<AppUser> results = tQuery.getResultList();
+			String qString = "SELECT u FROM User u WHERE u.username=:username";
+			TypedQuery<AppUser> tQuery = em.createQuery(qString, AppUser.class);
+			tQuery.setParameter("username", username);
+			List<AppUser> results = tQuery.getResultList();
 
-		if (results.isEmpty()) {
-			BookKeeper.log("App_StartUp: User named '" + username + "' not found.");
-			BookKeeper.log("App_StartUp: Injecting user '" + username + "' into database.");
-			injectUser(username, nameOfUser);
-		} else
-			BookKeeper.log("App_StartUp: User named '" + username + "' was found.");
+			if (results.isEmpty()) {
+				bk.log("App_StartUp: User named '" + username + "' not found.");
+				bk.log("App_StartUp: Injecting user '" + username + "' into database.");
+				injectUser(username, nameOfUser);
+			} else
+				bk.log("App_StartUp: User named '" + username + "' was found.");
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+
 	}
 
 	private void injectUser(String username, String nameOfUser) throws Exception {

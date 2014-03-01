@@ -13,17 +13,17 @@ import com.bitjester.apps.common.login.AppSession;
 @SessionScoped
 public class BookKeeper implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Inject
 	private AppSession userSession;
-	
+
 	@Inject
-	private static Logger logger;
-	
-	public static void log(String message){
+	private Logger logger;
+
+	public void log(String message) {
 		logger.info(message);
 	}
-	
+
 	private String userInfo() {
 		if (null != userSession && null != userSession.getActiveUser())
 			return userSession.getActiveUser().getId() + " - " + userSession.getActiveUser().getUsername();
@@ -39,16 +39,10 @@ public class BookKeeper implements Serializable {
 		entity.setCreateTime(new Date(System.currentTimeMillis()));
 		entity.setCreateUser(userInfo);
 	}
-	
+
 	public void delete(BaseEntity entity) {
 		logger.info("Delete: " + System.currentTimeMillis());
 		logger.info("User: " + userInfo());
-		logger.info("Deleting: " + entity);
-	}
-
-	public static void delete(BaseEntity entity, String userInfo) {
-		logger.info("Delete: " + System.currentTimeMillis());
-		logger.info("User: " + userInfo);
 		logger.info("Deleting: " + entity);
 	}
 
