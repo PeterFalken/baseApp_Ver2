@@ -38,6 +38,7 @@ public class View_Users implements Serializable {
 		query += " ORDER BY letter";
 		List<String> results = em.createQuery(query, String.class).getResultList();
 		results.add(0, "-");
+		System.out.println("There are " + results.size() + " letters.");
 		return results;
 	}
 
