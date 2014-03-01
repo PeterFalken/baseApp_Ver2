@@ -39,6 +39,18 @@ public class BookKeeper implements Serializable {
 		entity.setCreateTime(new Date(System.currentTimeMillis()));
 		entity.setCreateUser(userInfo);
 	}
+	
+	public void delete(BaseEntity entity) {
+		logger.info("Delete: " + System.currentTimeMillis());
+		logger.info("User: " + userInfo());
+		logger.info("Deleting: " + entity);
+	}
+
+	public static void delete(BaseEntity entity, String userInfo) {
+		logger.info("Delete: " + System.currentTimeMillis());
+		logger.info("User: " + userInfo);
+		logger.info("Deleting: " + entity);
+	}
 
 	public void update(BaseEntity entity) {
 		entity.setUpdateTime(new Date(System.currentTimeMillis()));
