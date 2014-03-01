@@ -4,12 +4,15 @@
 
 <h:head>
 	<ui:insert name="head" />
+	<!--
 	<h:outputStylesheet library="bootstrap/css" name="bootstrap.min.css" />
 	<h:outputStylesheet library="bootstrap/css" name="bootstrap-theme.min.css" />
 	<h:outputStylesheet library="css" name="main-template.css" />
+	-->
 </h:head>
 
 <h:body>
+	<!--
 	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 		<div class="container">
 			<div class="navbar-header">
@@ -25,16 +28,19 @@
 					<li><a href="#about">About</a></li>
 					<li><a href="#contact">Contact</a></li>
 				</ul>
-			</div>
+			</div>  -->
 			<!--/.nav-collapse -->
+	<!--		
 		</div>
 	</div>
+	-->
 
 	<r:status onstart="#{r:component('statPane')}.show();" onstop="#{r:component('statPane')}.hide();" />
 	<r:popupPanel id="statPane" autosized="true" modal="true">
 		<h:graphicImage library="images" name="wait.gif" />
 	</r:popupPanel>
 
+<!--
 	<div class="container">
 
 		<div class="starter-template">
@@ -43,18 +49,20 @@
 				Use this document as a way to quickly start any new project.<br />
 				All you get is this text and a mostly barebones	HTML document.
 			</p>
-
+  -->
 			<ui:insert name="content" />
-
+<!--
 		</div>
 
 	</div>
+	-->
 	<!-- /.container -->
 
 
 	<ui:insert name="footer" />
-
+<!--
 	<h:outputScript library="bootstrap/js" name="bootstrap.js" />
+	-->
 </h:body>
 </html>
 
