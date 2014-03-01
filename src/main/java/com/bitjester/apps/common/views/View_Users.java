@@ -34,7 +34,7 @@ public class View_Users implements Serializable {
 	// -- View methods
 	@RequestScoped
 	public List<String> getUserStartLetters() throws Exception {
-		String query = "SELECT DISTINCT UPPER(SUBSTRING(username,1,1)) AS letter FROM User";
+		String query = "SELECT DISTINCT UPPER(SUBSTRING(username,1,1)) AS letter FROM AppUser";
 		query += " ORDER BY letter";
 		List<String> results = em.createQuery(query, String.class).getResultList();
 		results.add(0, "-");
@@ -43,7 +43,7 @@ public class View_Users implements Serializable {
 
 	@RequestScoped
 	public List<AppUser> getUsersForLetter(String letter) throws Exception {
-		String query = "FROM User WHERE username LIKE '" + letter + "%'";
+		String query = "FROM AppUser WHERE username LIKE '" + letter + "%'";
 		query += " ORDER BY username";
 		return em.createQuery(query, AppUser.class).getResultList();
 	}

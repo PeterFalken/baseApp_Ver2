@@ -39,7 +39,7 @@ public class UserWatchdog {
 	private void checkForUser(String username, String nameOfUser) throws Exception {
 		logger.info("App_StartUp: Looking for user: " + username + ".");
 
-		String qString = "SELECT u FROM User u WHERE u.username=:username";
+		String qString = "SELECT u FROM AppUser u WHERE u.username=:username";
 		TypedQuery<AppUser> tQuery = em.createQuery(qString, AppUser.class);
 		tQuery.setParameter("username", username);
 		List<AppUser> results = tQuery.getResultList();
