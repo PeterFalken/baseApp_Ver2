@@ -36,9 +36,7 @@ public class ViewUsers implements Serializable {
 	public List<String> getUserStartLetters() throws Exception {
 		String query = "SELECT DISTINCT SUBSTRING(username,1,1) AS letter FROM AppUser";
 		query += " ORDER BY letter";
-		List<String> results = em.createQuery(query, String.class).getResultList();
-		results.add(0, "-");
-		return results;
+		return em.createQuery(query, String.class).getResultList();
 	}
 
 	@RequestScoped
