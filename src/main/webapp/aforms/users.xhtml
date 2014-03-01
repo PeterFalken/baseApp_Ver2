@@ -11,7 +11,7 @@
 					<h2>Users</h2>
 					<r:tabPanel switchType="ajax">
 						<r:repeat value="#{viewUsers.userStartLetters}" var="letter">
-							<r:tab header="#{letter}" switchType="ajax">
+							<r:tab header="#{letter.toUpperCase()}" switchType="ajax">
 								<r:dataTable value="#{viewUsers.getUsersForLetter(letter)}" var="u" rowKeyVar="rowNum">
 									<r:column>
 										<f:facet name="header">#</f:facet>

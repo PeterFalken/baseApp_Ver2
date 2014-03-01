@@ -34,22 +34,18 @@ public class ViewUsers implements Serializable {
 	// -- View methods
 	@RequestScoped
 	public List<String> getUserStartLetters() throws Exception {
-		String query = "SELECT DISTINCT UPPER(SUBSTRING(username,1,1)) AS letter FROM AppUser";
+		String query = "SELECT DISTINCT SUBSTRING(username,1,1) AS letter FROM AppUser";
 		query += " ORDER BY letter";
 		List<String> results = em.createQuery(query, String.class).getResultList();
 		results.add(0, "-");
-		//System.out.println("There are " + results.size() + " letters.");
 		return results;
 	}
 
 	@RequestScoped
 	public List<AppUser> getUsersForLetter(String letter) throws Exception {
-		String query = "FROM AppUser WHERE UPPER(username) LIKE '" + letter + "%'";
+		String query = "FROM AppUser WHERE username LIKE '" + letter + "%'";
 		query += " ORDER BY username";
-		List<AppUser> results = em.createQuery(query, AppUser.class).getResultList();
-		System.out.println(query);
-		System.out.println("There are " + results.size() + " users.");
-		return results;
+		return em.createQuery(query, AppUser.class).getResultList();
 	}
 
 	// -- Persistence & form methods
