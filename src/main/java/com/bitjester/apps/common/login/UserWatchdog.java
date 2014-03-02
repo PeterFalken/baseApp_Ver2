@@ -28,7 +28,7 @@ public class UserWatchdog {
 
 	@PostConstruct
 	private void checkForUsers() {
-		System.out.println("Starting application: " + appName + ".");
+		logger.info("Starting application: " + appName + ".");
 		try {
 			checkForUser("admin", "Administrator User");
 			checkForUser("luis", "Luis Garcia");
@@ -65,6 +65,7 @@ public class UserWatchdog {
 
 			BookKeeper.create(user, "0 - System");
 			em.persist(user);
+			em.flush();
 		}
 	}
 }
