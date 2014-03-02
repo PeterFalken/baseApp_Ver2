@@ -112,6 +112,14 @@ public class AppSession implements Serializable {
 	}
 
 	public void logout() throws Exception {
+		// If impersonating - we just go back to our systemUser.
+		if (null != activeUser) {
+			activeUser = null;
+			FacesUtil.navTo("index.html");
+			return;
+		}
+
+		// If not impersonating - we end the session.
 		if (null != systemUser) {
 			lm.logOutUser(systemUser);
 			FacesUtil.addMessage("Adios, " + systemUser.getName());
