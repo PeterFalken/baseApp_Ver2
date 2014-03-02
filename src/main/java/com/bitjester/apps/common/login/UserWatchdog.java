@@ -6,8 +6,6 @@ import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
-import javax.enterprise.context.ApplicationScoped;
-import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
@@ -16,10 +14,8 @@ import com.bitjester.apps.common.entities.AppUser;
 import com.bitjester.apps.common.utils.BookKeeper;
 import com.bitjester.apps.common.utils.HashUtil;
 
-//@Singleton
-//@Startup
-@ManagedBean(eager = true)
-@ApplicationScoped
+@Singleton
+@Startup
 public class UserWatchdog {
 	@Inject
 	private String appName;
