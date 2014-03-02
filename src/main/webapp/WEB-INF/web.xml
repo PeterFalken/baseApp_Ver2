@@ -23,15 +23,24 @@
 		<location>/error/error.xhtml</location>
 	</error-page>
 
+	<!-- START: Useful for Development -->
 	<context-param>
 		<param-name>javax.faces.PROJECT_STAGE</param-name>
 		<param-value>Development</param-value>
 	</context-param>
+	<!-- END: Useful for Development -->
 
-	<!--context-param>
+	<!-- START: Disables RichFaces skin -->
+	<context-param>
 		<param-name>org.richfaces.skin</param-name>
-		<param-value>appSkin</param-value>
-	</context-param-->
+		<param-value>plain</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>org.richfaces.enableControlSkinning</param-name>
+		<param-value>false</param-value>
+	</context-param>
+	<!-- END: Disables RichFaces skin -->
 
 	<context-param>
 		<param-name>javax.faces.INTERPRET_EMPTY_STRING_SUBMITTED_VALUES_AS_NULL</param-name>
