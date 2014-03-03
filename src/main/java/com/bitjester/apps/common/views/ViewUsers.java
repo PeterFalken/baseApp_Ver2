@@ -12,6 +12,7 @@ import javax.persistence.EntityManager;
 
 import com.bitjester.apps.common.DataManager;
 import com.bitjester.apps.common.entities.AppUser;
+import com.bitjester.apps.common.utils.FacesUtil;
 import com.bitjester.apps.common.utils.HashUtil;
 
 @Named
@@ -66,18 +67,26 @@ public class ViewUsers implements Serializable {
 		managedUser = null;
 	}
 
-	public void remove(Long id) throws Exception {
-		dm.remove(em.find(AppUser.class, id));
+	public void remove(Long id) {
+		try {
+			dm.remove(em.find(AppUser.class, id));
+		} catch (Exception e) {
+			FacesUtil.addMessage("Error ocurred, please reload page and try again.");
+		}
 	}
 
 	public void store() throws Exception {
-		if (null == managedUser.getId()) {
-			managedUser.setAppRole(appName, "user");
-			managedUser.setPassword(HashUtil.calc_HashSHA("123456"));
-		} else {
-			managedUser.setAppRole(appName, managedUser.getActiveRole());
+		try {
+			if (null == managedUser.getId()) {
+				managedUser.setAppRole(appName, "user");
+				managedUser.setPassword(HashUtil.calc_HashSHA("123456"));
+			} else {
+				managedUser.setAppRole(appName, managedUser.getActiveRole());
+			}
+			dm.store(managedUser);
+			managedUser = null;
+		} catch (Exception e) {
+			FacesUtil.addMessage("Error ocurred, please reload page and try again.");
 		}
-		dm.store(managedUser);
-		managedUser = null;
 	}
 }

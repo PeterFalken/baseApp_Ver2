@@ -1,11 +1,13 @@
 package com.bitjester.apps.common.utils;
 
+import java.io.IOException;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
 public abstract class FacesUtil {
-	public static void addMessage(String message) throws Exception {
+	public static void addMessage(String message) {
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(message));
 	}
 
@@ -18,11 +20,16 @@ public abstract class FacesUtil {
 		return getEC().getRequestContextPath() + "/";
 	}
 
-	public static void invalidateSession() throws Exception {
+	public static void invalidateSession() {
 		getEC().invalidateSession();
 	}
 
-	public static void navTo(String url) throws Exception {
-		getEC().redirect(getCPath() + url);
+	public static void navTo(String url) {
+		try {
+			getEC().redirect(getCPath() + url);
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+		}
 	}
 }
