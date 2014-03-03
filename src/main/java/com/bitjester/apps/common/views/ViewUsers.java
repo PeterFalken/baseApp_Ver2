@@ -75,7 +75,7 @@ public class ViewUsers implements Serializable {
 		}
 	}
 
-	public void store() throws Exception {
+	public void store() {
 		try {
 			if (null == managedUser.getId()) {
 				managedUser.setAppRole(appName, "user");
