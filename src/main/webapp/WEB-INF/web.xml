@@ -31,6 +31,7 @@
 	<!-- END: Useful for Development -->
 
 	<!-- START: Disables RichFaces skin -->
+	<!--
 	<context-param>
 		<param-name>org.richfaces.skin</param-name>
 		<param-value>plain</param-value>
@@ -40,6 +41,7 @@
 		<param-name>org.richfaces.enableControlSkinning</param-name>
 		<param-value>false</param-value>
 	</context-param>
+	-->
 	<!-- END: Disables RichFaces skin -->
 
 	<context-param>
