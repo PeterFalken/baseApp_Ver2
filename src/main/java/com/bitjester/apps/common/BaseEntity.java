@@ -30,7 +30,7 @@ public abstract class BaseEntity implements Serializable {
 
 	// --- Overrides
 	// Check this video: https://www.youtube.com/watch?v=E-LG5DlOKBw
-	// Check & Overrride Hash method.
+	// Check & Override Hash method.
 	@Override
 	public boolean equals(Object obj) {
 		if (obj == null)
