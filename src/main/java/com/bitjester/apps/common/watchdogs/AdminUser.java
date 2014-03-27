@@ -1,4 +1,4 @@
-package com.bitjester.apps.common.login;
+package com.bitjester.apps.common.watchdogs;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -16,7 +16,7 @@ import com.bitjester.apps.common.utils.HashUtil;
 
 @Singleton
 @Startup
-public class UserWatchdog {
+public class AdminUser {
 	@Inject
 	private String appName;
 
