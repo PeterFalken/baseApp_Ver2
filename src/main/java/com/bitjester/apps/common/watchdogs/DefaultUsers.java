@@ -16,7 +16,7 @@ import com.bitjester.apps.common.utils.HashUtil;
 
 @Singleton
 @Startup
-public class AdminUser {
+public class DefaultUsers {
 	@Inject
 	private String appName;
 
