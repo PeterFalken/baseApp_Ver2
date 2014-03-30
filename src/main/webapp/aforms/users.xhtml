@@ -57,7 +57,7 @@
 											<h:graphicImage library="images/icons" name="delete.gif" alt="Delete" />
 										</r:commandLink>
 										&nbsp;
-										<r:commandLink actionListener="#{login.impersonate(u.id)}" execute="@this"
+										<r:commandLink actionListener="#{appSession.impersonate(u.id)}" execute="@this"
 											rendered="#{appSession.systemUser.activeRole == 'admin'}">
 											<h:graphicImage library="images/icons" name="yellow_lamp.gif" alt="Impersonate" />
 										</r:commandLink>
