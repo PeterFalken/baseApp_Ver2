@@ -46,19 +46,7 @@ public class BookKeeper implements Serializable {
 		return "0 - System";
 	}
 
-	public void create(BaseEntity entity) throws Exception {
-		try {
-			entity.setCreateTime(new Date(System.currentTimeMillis()));
-			entity.setCreateUser(userInfo());
-			dt.store(entity);
-		} catch (Exception e) {
-			log(e.getMessage());
-			e.printStackTrace();
-			throw e;
-		}
-	}
-
-	public void delete(BaseEntity entity) throws Exception {
+	public void remove(BaseEntity entity) throws Exception {
 		try {
 			logger.info("Delete: " + System.currentTimeMillis());
 			logger.info("User: " + userInfo());
@@ -71,10 +59,17 @@ public class BookKeeper implements Serializable {
 		}
 	}
 
-	public void update(BaseEntity entity) throws Exception {
+	public void store(BaseEntity entity) throws Exception {
 		try {
-			entity.setUpdateTime(new Date(System.currentTimeMillis()));
-			entity.setUpdateUser(userInfo());
+			if (null == entity.getId()) {
+				// Entity is new and will be persisted
+				entity.setCreateTime(new Date(System.currentTimeMillis()));
+				entity.setCreateUser(userInfo());
+			} else {
+				// Entity already exists will be updated
+				entity.setUpdateTime(new Date(System.currentTimeMillis()));
+				entity.setUpdateUser(userInfo());
+			}
 			dt.store(entity);
 		} catch (Exception e) {
 			log(e.getMessage());
@@ -82,5 +77,4 @@ public class BookKeeper implements Serializable {
 			throw e;
 		}
 	}
-
 }

@@ -69,7 +69,7 @@ public class ViewUsers implements Serializable {
 
 	public void remove(Long id) {
 		try {
-			bk.delete(em.find(AppUser.class, id));
+			bk.remove(em.find(AppUser.class, id));
 		} catch (Exception e) {
 			FacesUtil.addMessage("Error ocurred, please reload page and try again.");
 		}
@@ -78,13 +78,14 @@ public class ViewUsers implements Serializable {
 	public void store() {
 		try {
 			if (null == managedUser.getId()) {
+				// New user will be assigned a 'user' role and default password.
 				managedUser.setAppRole(appName, "user");
 				managedUser.setPassword(HashUtil.calc_HashSHA("123456"));
-				bk.create(managedUser);
 			} else {
+				// For existing users we update their role if necesary.
 				managedUser.setAppRole(appName, managedUser.getActiveRole());
-				bk.update(managedUser);
 			}
+			bk.store(managedUser);
 			managedUser = null;
 		} catch (Exception e) {
 			FacesUtil.addMessage("Error ocurred, please reload page and try again.");
