@@ -10,8 +10,8 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 
-import com.bitjester.apps.common.DataManager;
 import com.bitjester.apps.common.entities.AppUser;
+import com.bitjester.apps.common.utils.BookKeeper;
 import com.bitjester.apps.common.utils.FacesUtil;
 import com.bitjester.apps.common.utils.HashUtil;
 
@@ -24,7 +24,7 @@ public class ViewUsers implements Serializable {
 	private String appName;
 
 	@Inject
-	private DataManager dm;
+	private BookKeeper bk;
 
 	@Inject
 	private EntityManager em;
@@ -69,7 +69,7 @@ public class ViewUsers implements Serializable {
 
 	public void remove(Long id) {
 		try {
-			dm.remove(em.find(AppUser.class, id));
+			bk.delete(em.find(AppUser.class, id));
 		} catch (Exception e) {
 			FacesUtil.addMessage("Error ocurred, please reload page and try again.");
 		}
@@ -80,10 +80,11 @@ public class ViewUsers implements Serializable {
 			if (null == managedUser.getId()) {
 				managedUser.setAppRole(appName, "user");
 				managedUser.setPassword(HashUtil.calc_HashSHA("123456"));
+				bk.create(managedUser);
 			} else {
 				managedUser.setAppRole(appName, managedUser.getActiveRole());
+				bk.update(managedUser);
 			}
-			dm.store(managedUser);
 			managedUser = null;
 		} catch (Exception e) {
 			FacesUtil.addMessage("Error ocurred, please reload page and try again.");
