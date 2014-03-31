@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:r="http://richfaces.org">
+
+<h:head></h:head>
+<h:body>
+	<r:notifyMessages stayTime="2000" />
+	<h:form id="form" prependId="false">
+		<r:outputPanel ajaxRendered="true">
+			<r:region>
+
+				<r:panel rendered="#{!loggedIn}">
+					<f:facet name="header">Welcome</f:facet>
+					<h:panelGrid columns="2">
+						<h:outputLabel for="username">User:</h:outputLabel>
+						<h:inputText id="username" value="#{credentials.username}" />
+						<h:outputLabel for="password">Pass:</h:outputLabel>
+						<h:inputSecret id="password" value="#{credentials.password}" />
+					</h:panelGrid>
+					<h:commandButton value="Enter" action="#{appSession.checkCredentials}" />
+				</r:panel>
+
+				<r:panel rendered="#{loggedIn}">
+					<p>Your credentials have been verified. Welcome to #{appName}.</p>
+					<p>We need to draw the fancy circular menu :).</p>
+				</r:panel>
+
+			</r:region>
+		</r:outputPanel>
+	</h:form>
+</h:body>
+</html>

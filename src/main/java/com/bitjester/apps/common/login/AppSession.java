@@ -59,6 +59,8 @@ public class AppSession implements Serializable {
 		}
 	}
 
+	@Named
+	@Produces
 	public boolean isLoggedIn() {
 		return (null != systemUser) && !(systemUser.getMustChangePassword());
 	}

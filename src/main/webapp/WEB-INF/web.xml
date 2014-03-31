@@ -3,6 +3,7 @@
 	xmlns:web="http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
 	id="base2" version="3.1">
 	<welcome-file-list>
+		<welcome-file>index.xhtml</welcome-file>
 		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>
 
@@ -31,17 +32,8 @@
 	<!-- END: Useful for Development -->
 
 	<!-- START: Disables RichFaces skin -->
-	<!--
-	<context-param>
-		<param-name>org.richfaces.skin</param-name>
-		<param-value>plain</param-value>
-	</context-param>
-
-	<context-param>
-		<param-name>org.richfaces.enableControlSkinning</param-name>
-		<param-value>false</param-value>
-	</context-param>
-	-->
+	<!-- <context-param> <param-name>org.richfaces.skin</param-name> <param-value>plain</param-value> </context-param> <context-param> 
+		<param-name>org.richfaces.enableControlSkinning</param-name> <param-value>false</param-value> </context-param> -->
 	<!-- END: Disables RichFaces skin -->
 
 	<context-param>
