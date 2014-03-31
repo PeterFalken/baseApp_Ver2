@@ -68,9 +68,9 @@ public class AppSession implements Serializable {
 	public void checkRole(String role) throws Exception {
 		if (isLoggedIn()) {
 			if (null != role && !systemUser.getActiveRole().contains(role))
-				FacesUtil.navTo("index.html");
+				FacesUtil.navToHome();
 		} else
-			FacesUtil.navTo("index.html");
+			FacesUtil.navToHome();
 	}
 
 	// -- Login + Credentials methods
@@ -117,7 +117,7 @@ public class AppSession implements Serializable {
 		// If impersonating - we just go back to our systemUser.
 		if (null != activeUser) {
 			activeUser = null;
-			FacesUtil.navTo("index.xhtml");
+			FacesUtil.navToHome();
 			return;
 		}
 
@@ -129,7 +129,7 @@ public class AppSession implements Serializable {
 		systemUser = null;
 		activeUser = null;
 		FacesUtil.invalidateSession();
-		FacesUtil.navTo("index.xhtml");
+		FacesUtil.navToHome();
 	}
 
 	@PreDestroy

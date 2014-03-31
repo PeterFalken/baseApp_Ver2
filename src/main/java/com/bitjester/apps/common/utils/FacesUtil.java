@@ -32,4 +32,8 @@ public abstract class FacesUtil {
 			e.printStackTrace();
 		}
 	}
+
+	public static void navToHome() {
+		navTo("index.xhtml");
+	}
 }
