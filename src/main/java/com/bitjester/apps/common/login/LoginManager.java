@@ -36,7 +36,7 @@ public class LoginManager {
 		List<AppUser> results = tQuery.getResultList();
 
 		if (results.isEmpty()) {
-			// logger.info("User named '" + user + "' not found.");
+			// User not found.
 			return null;
 		} else {
 			BookKeeper.update(results.get(0), "0 - System");

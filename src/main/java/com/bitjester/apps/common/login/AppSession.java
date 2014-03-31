@@ -91,19 +91,19 @@ public class AppSession implements Serializable {
 	public void changePassword() throws Exception {
 		// Verify if current password matches the one on the database
 		if (!systemUser.getPassword().equals(HashUtil.calc_HashSHA(creds.getPassword()))) {
-			FacesUtil.addMessage("La contraseña actual no es correcta.");
+			FacesUtil.addMessage("Current password is incorrect.");
 			return;
 		}
 
 		// Verify if newPassword1 is the same as newPassword2
 		if (!creds.getNewPassword1().equals(creds.getNewPassword2())) {
-			FacesUtil.addMessage("Ambos campos de la nueva contraseña deben coincidir.");
+			FacesUtil.addMessage("New password fields must match.");
 			return;
 		}
 
 		// Verify if new password is different from current password
 		if (creds.getPassword().equals(creds.getNewPassword1())) {
-			FacesUtil.addMessage("La contraseña nueva no puede ser la misma que la anterior.");
+			FacesUtil.addMessage("New password must be different from old password.");
 			return;
 		}
 
