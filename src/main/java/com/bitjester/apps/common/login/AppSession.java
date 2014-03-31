@@ -117,19 +117,19 @@ public class AppSession implements Serializable {
 		// If impersonating - we just go back to our systemUser.
 		if (null != activeUser) {
 			activeUser = null;
-			FacesUtil.navTo("index.html");
+			FacesUtil.navTo("index.xhtml");
 			return;
 		}
 
 		// If not impersonating - we end the session.
 		if (null != systemUser) {
 			lm.logOutUser(systemUser);
-			FacesUtil.addMessage("Adios, " + systemUser.getName());
+			FacesUtil.addMessage("Good bye, " + systemUser.getName());
 		}
 		systemUser = null;
 		activeUser = null;
 		FacesUtil.invalidateSession();
-		FacesUtil.navTo("index.html");
+		FacesUtil.navTo("index.xhtml");
 	}
 
 	@PreDestroy

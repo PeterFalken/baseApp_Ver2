@@ -10,7 +10,7 @@
 			<r:region>
 
 				<r:panel rendered="#{!loggedIn}">
-					<f:facet name="header">Welcome</f:facet>
+					<f:facet name="header">Enter your credentials.</f:facet>
 					<h:panelGrid columns="2">
 						<h:outputLabel for="username">User:</h:outputLabel>
 						<h:inputText id="username" value="#{credentials.username}" />
@@ -21,8 +21,10 @@
 				</r:panel>
 
 				<r:panel rendered="#{loggedIn}">
-					<p>Your credentials have been verified. Welcome to #{appName}.</p>
+					<f:facet name="header">Welcome to #{appName}.</f:facet>
+					<p>Your credentials have been verified.</p>
 					<p>We need to draw the fancy circular menu :).</p>
+					<h:commandButton value="Exit" action="#{appSession.logout}" />
 				</r:panel>
 
 			</r:region>
