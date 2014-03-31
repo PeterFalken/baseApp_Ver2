@@ -38,9 +38,6 @@ public class LoginManager {
 		if (results.isEmpty()) {
 			// logger.info("User named '" + user + "' not found.");
 			return null;
-		} else if (results.size() > 1) {
-			// logger.info("Cannot have more than one user with the same username!.");
-			throw new IllegalStateException("Cannot have more than one user with the same username!.");
 		} else {
 			BookKeeper.update(results.get(0), "0 - System");
 			results.get(0).setLastLogin(new Date(System.currentTimeMillis()));
