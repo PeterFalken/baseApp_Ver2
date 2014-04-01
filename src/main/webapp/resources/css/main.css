@@ -1,40 +1,13 @@
-html,body {
-	height: 100%;
-}
-
-.wrapper,.wrapper .container {
-	width: 100%;
-}
-
-.wrapper.primary {
-	min-height: 100%;
-	height: auto !important;
-	height: 100%;
-	margin-bottom: -30px;
-}
-
-.wrapper.primary .container {
-	padding-bottom: 30px;
-}
-
-.wrapper.footer {
-	height: 30px;
-}
-
-.wrapper.footer .container {
+body {
 	margin: 0px auto;
-	padding-bottom: 7px;
-	padding-top:  7px;
-	text-align: center;
+	padding: 10px;
 }
 
-/* Uncomment if supporting a fixed width container */
-/*
-.wrapper {
-	min-width: 960px;
+p {
+	margin-top: 0;
+	margin-bottom: 0;
 }
 
-.wrapper .container {
-	width: 960px;
+.centered {
 	margin: 0px auto;
-}*/
+}

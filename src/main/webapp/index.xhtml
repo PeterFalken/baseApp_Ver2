@@ -3,8 +3,8 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:r="http://richfaces.org">
 
 <h:head>
-	<title></title>
-	<h:outputStylesheet library="css" name="index.css" />
+	<title>#{appName}</title>
+	<h:outputStylesheet library="css" name="main.css" />
 </h:head>
 
 <h:body>
@@ -13,7 +13,7 @@
 		<r:outputPanel ajaxRendered="true">
 			<r:region>
 
-				<r:panel rendered="#{!loggedIn}" styleClass="centeredPanel" style="width: 240px;">
+				<r:panel rendered="#{!loggedIn}" styleClass="centered" style="width: 240px;">
 					<f:facet name="header">Enter your credentials.</f:facet>
 					<h:panelGrid columns="2">
 						<h:outputLabel for="username">User:</h:outputLabel>
@@ -26,7 +26,7 @@
 					</div>
 				</r:panel>
 
-				<r:panel rendered="#{loggedIn}" styleClass="centeredPanel" style="width: 240px;">
+				<r:panel rendered="#{loggedIn}" styleClass="centered" style="width: 240px;">
 					<f:facet name="header">Welcome to #{appName}.</f:facet>
 					<p>Your credentials have been verified.</p>
 					<p>We need to draw the fancy circular menu :).</p>
