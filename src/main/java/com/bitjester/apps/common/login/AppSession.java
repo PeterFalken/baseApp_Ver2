@@ -52,6 +52,10 @@ public class AppSession implements Serializable {
 
 	// Impersonate user identified by Long id - logs current user name.
 	public void impersonate(Long id) throws Exception {
+		if (systemUser.getId().equals(id))
+			// A systemUser is always impersonating himself.
+			return;
+		// For every other user id, we set the activeUser.
 		AppUser user = lm.getUserForImpersonation(id);
 		if (null != user) {
 			activeUser = user;
