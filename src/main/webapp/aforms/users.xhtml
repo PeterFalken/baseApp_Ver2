@@ -97,14 +97,16 @@
 									<f:selectItem itemLabel="User" itemValue="user" />
 								</h:selectOneMenu>
 							</h:panelGrid>
-							<r:commandButton value="Save">
-								<r:ajax event="click" listener="#{viewUsers.store}"
-									oncomplete="if(#{empty facesContext.maximumSeverity}) {#{r:component('popup')}.hide();}" />
-							</r:commandButton>
-							<r:commandButton value="Cancel" immediate="true">
-								<r:ajax event="click" execute="@this" listener="#{viewUsers.refresh}"
-									oncomplete="#{r:component('popup')}.hide();" />
-							</r:commandButton>
+							<div style="text-align: center;">
+								<r:commandButton value="Save">
+									<r:ajax event="click" listener="#{viewUsers.store}"
+										oncomplete="if(#{empty facesContext.maximumSeverity}) {#{r:component('popup')}.hide();}" />
+								</r:commandButton>
+								<r:commandButton value="Cancel" immediate="true">
+									<r:ajax event="click" execute="@this" listener="#{viewUsers.refresh}"
+										oncomplete="#{r:component('popup')}.hide();" />
+								</r:commandButton>
+							</div>
 						</fieldset>
 					</r:region>
 				</r:outputPanel>
