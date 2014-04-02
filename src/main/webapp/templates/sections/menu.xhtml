@@ -3,47 +3,51 @@
 	xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:r="http://richfaces.org">
 
 <ui:composition>
+	<h:form id="menuForm" prependId="false">
+		<r:outputPanel ajaxRendered="true">
+			<r:region>
+				<r:toolbar rendered="#{loggedIn}">
+					<r:toolbarGroup location="left">
+						<r:dropDownMenu>
+							<f:facet name="label">
+								<h:outputText value="Menu" />
+							</f:facet>
+							<r:menuItem label="Menu 1" />
+							<r:menuItem label="Menu 2" />
+							<r:menuItem label="Menu 3" />
+							<r:menuGroup label="Options">
+								<r:menuItem label="Option 1" />
+								<r:menuItem label="Option 2" />
+							</r:menuGroup>
+						</r:dropDownMenu>
+					</r:toolbarGroup>
 
-	<r:toolbar rendered="#{loggedIn}">
-		<r:toolbarGroup location="left">
-			<r:dropDownMenu>
-				<f:facet name="label">
-					<h:outputText value="Menu" />
-				</f:facet>
-				<r:menuItem label="Menu 1" />
-				<r:menuItem label="Menu 2" />
-				<r:menuItem label="Menu 3" />
-				<r:menuGroup label="Options">
-					<r:menuItem label="Option 1" />
-					<r:menuItem label="Option 2" />
-				</r:menuGroup>
-			</r:dropDownMenu>
-		</r:toolbarGroup>
+					<r:toolbarGroup location="right">
+						<r:dropDownMenu rendered="#{'sadmin' == systemUser.activeRole}">
+							<f:facet name="label">
+								<h:outputText value="Admin menu" />
+							</f:facet>
+							<r:menuItem label="Menu 1" />
+							<r:menuItem label="Menu 2" />
+							<r:menuItem label="Menu 3" />
+							<r:menuGroup label="Options">
+								<r:menuItem label="Option 1" />
+								<r:menuItem label="Option 2" />
+							</r:menuGroup>
+						</r:dropDownMenu>
 
-		<r:toolbarGroup location="right">
-			<r:dropDownMenu rendered="#{'sadmin' == systemUser.activeRole}">
-				<f:facet name="label">
-					<h:outputText value="Admin menu" />
-				</f:facet>
-				<r:menuItem label="Menu 1" />
-				<r:menuItem label="Menu 2" />
-				<r:menuItem label="Menu 3" />
-				<r:menuGroup label="Options">
-					<r:menuItem label="Option 1" />
-					<r:menuItem label="Option 2" />
-				</r:menuGroup>
-			</r:dropDownMenu>
-
-			<r:dropDownMenu>
-				<f:facet name="label">
-					<h:outputText value="#{activeUser.name}" />
-				</f:facet>
-				<r:menuItem label="Change password" />
-				<r:menuItem label="Logout" action="#{appSession.logout}" />
-			</r:dropDownMenu>
-		</r:toolbarGroup>
-	</r:toolbar>
-
+						<r:dropDownMenu>
+							<f:facet name="label">
+								<h:outputText value="#{activeUser.name}" />
+							</f:facet>
+							<r:menuItem label="Change password" />
+							<r:menuItem label="Logout" action="#{appSession.logout}" />
+						</r:dropDownMenu>
+					</r:toolbarGroup>
+				</r:toolbar>
+			</r:region>
+		</r:outputPanel>
+	</h:form>
 </ui:composition>
 
 </html>
