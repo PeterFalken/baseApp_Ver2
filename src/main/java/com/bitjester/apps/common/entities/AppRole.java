@@ -1,5 +1,6 @@
 package com.bitjester.apps.common.entities;
 
+import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -9,6 +10,7 @@ import javax.persistence.UniqueConstraint;
 
 import com.bitjester.apps.common.BaseEntity;
 
+@Cacheable
 @Entity
 @Table(name = "roles", uniqueConstraints = @UniqueConstraint(columnNames = { "system_user", "application" }))
 public class AppRole extends BaseEntity {

@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.persistence.Cacheable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,6 +18,7 @@ import javax.persistence.UniqueConstraint;
 import com.bitjester.apps.common.BaseEntity;
 import com.bitjester.apps.common.utils.BookKeeper;
 
+@Cacheable
 @Entity
 @Table(name = "users", uniqueConstraints = @UniqueConstraint(columnNames = { "username" }))
 public class AppUser extends BaseEntity {
