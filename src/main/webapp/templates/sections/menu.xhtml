@@ -6,13 +6,14 @@
 	<h:form id="menuForm" prependId="false">
 		<r:outputPanel ajaxRendered="true">
 			<r:region>
-				<r:toolbar rendered="#{loggedIn}">
+				<r:toolbar rendered="#{loggedIn}" itemSeparator="grid">
 					<r:toolbarGroup location="left">
+						<r:menuItem label="Home" action="/index.xhtml?faces-redirect=true" />
 						<r:dropDownMenu>
 							<f:facet name="label">
 								<h:outputText value="Menu" />
 							</f:facet>
-							<r:menuItem label="Home" action="/" />
+
 							<r:menuItem label="Menu 1" />
 							<r:menuItem label="Menu 2" />
 							<r:menuGroup label="Options">
@@ -27,7 +28,7 @@
 							<f:facet name="label">
 								<h:outputText value="Admin menu" />
 							</f:facet>
-							<r:menuItem label="User management" action="/aforms/users.xhtml" />
+							<r:menuItem label="User management" action="/aforms/users.xhtml?faces-redirect=true" />
 							<r:menuItem label="Menu 2" />
 							<r:menuGroup label="Options">
 								<r:menuItem label="Option 1" />
