@@ -26,10 +26,12 @@
 	</error-page>
 
 	<!-- START: Useful for Development -->
+	<!--
 	<context-param>
 		<param-name>javax.faces.PROJECT_STAGE</param-name>
 		<param-value>Development</param-value>
 	</context-param>
+	-->
 	<!-- END: Useful for Development -->
 
 	<!-- START: Enabled RichFaces custom skin -->
@@ -40,10 +42,12 @@
 	<!-- END: Enabled RichFaces custom skin -->
 
 	<!-- START: Disable RichFaces skinning of tags outside of RF -->
+	<!--
 	<context-param>
 		<param-name>org.richfaces.enableControlSkinning</param-name>
 		<param-value>false</param-value>
 	</context-param>
+	-->
 	<!-- END: Disable RichFaces skinning of tags outside of RF -->
 
 	<context-param>
