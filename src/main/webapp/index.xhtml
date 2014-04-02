@@ -2,41 +2,38 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:r="http://richfaces.org">
 
-<h:head>
-	<title>#{appName}</title>
-	<h:outputStylesheet library="css" name="main.css" />
-</h:head>
+<ui:composition template="/templates/main.xhtml">
+	<ui:define name="content">
+		<r:notifyMessages stayTime="2000" />
+		<h:form id="form" prependId="false">
+			<r:outputPanel ajaxRendered="true">
+				<r:region>
 
-<h:body>
-	<r:notifyMessages stayTime="2000" />
-	<h:form id="form" prependId="false">
-		<r:outputPanel ajaxRendered="true">
-			<r:region>
+					<r:panel rendered="#{!loggedIn}" styleClass="centered" style="width: 240px;">
+						<f:facet name="header">Enter your credentials.</f:facet>
+						<h:panelGrid columns="2">
+							<h:outputLabel for="username">User:</h:outputLabel>
+							<h:inputText id="username" value="#{credentials.username}" size="25" />
+							<h:outputLabel for="password">Pass:</h:outputLabel>
+							<h:inputSecret id="password" value="#{credentials.password}" size="25" />
+						</h:panelGrid>
+						<div style="text-align: center;">
+							<h:commandButton value="Enter" action="#{appSession.checkCredentials}" />
+						</div>
+					</r:panel>
 
-				<r:panel rendered="#{!loggedIn}" styleClass="centered" style="width: 240px;">
-					<f:facet name="header">Enter your credentials.</f:facet>
-					<h:panelGrid columns="2">
-						<h:outputLabel for="username">User:</h:outputLabel>
-						<h:inputText id="username" value="#{credentials.username}" size="25" />
-						<h:outputLabel for="password">Pass:</h:outputLabel>
-						<h:inputSecret id="password" value="#{credentials.password}" size="25" />
-					</h:panelGrid>
-					<div style="text-align: center;">
-						<h:commandButton value="Enter" action="#{appSession.checkCredentials}" />
-					</div>
-				</r:panel>
+					<r:panel rendered="#{loggedIn}" styleClass="centered" style="width: 240px;">
+						<f:facet name="header">Welcome to #{appName}.</f:facet>
+						<p>Your credentials have been verified.</p>
+						<p>We need to draw the fancy circular menu :).</p>
+						<div style="text-align: center;">
+							<h:commandButton value="Exit" action="#{appSession.logout}" />
+						</div>
+					</r:panel>
 
-				<r:panel rendered="#{loggedIn}" styleClass="centered" style="width: 240px;">
-					<f:facet name="header">Welcome to #{appName}.</f:facet>
-					<p>Your credentials have been verified.</p>
-					<p>We need to draw the fancy circular menu :).</p>
-					<div style="text-align: center;">
-						<h:commandButton value="Exit" action="#{appSession.logout}" />
-					</div>
-				</r:panel>
-
-			</r:region>
-		</r:outputPanel>
-	</h:form>
-</h:body>
+				</r:region>
+			</r:outputPanel>
+		</h:form>
+	</ui:define>
+</ui:composition>
 </html>
