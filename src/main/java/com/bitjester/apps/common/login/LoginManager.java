@@ -51,7 +51,7 @@ public class LoginManager {
 	}
 
 	public void logOutUser(AppUser user) throws Exception {
-		user = em.merge(user);
+		user = em.find(AppUser.class, user.getId());
 		BookKeeper.update(user, "0 - System");
 		user.setLastLogout(new Date(System.currentTimeMillis()));
 		em.flush();
