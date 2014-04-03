@@ -35,7 +35,7 @@
 							<f:facet name="label">
 								<h:outputText value="#{activeUser.name}" />
 							</f:facet>
-							<r:menuItem label="Change password" />
+							<r:menuItem label="Change password" action="/aforms/password.xhtml?faces-redirect=true"/>
 							<r:menuItem label="Logout" action="#{appSession.logout}" />
 						</r:dropDownMenu>
 					</r:toolbarGroup>
