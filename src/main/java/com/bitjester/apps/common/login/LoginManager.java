@@ -28,11 +28,11 @@ public class LoginManager {
 	}
 
 	public AppUser checkCredentials(String user, String password) throws Exception {
-		String query = "SELECT u FROM AppUser u WHERE u.username=:uname";
-		query += " AND u.active=TRUE AND u.password=:pass";
+		String query = "SELECT u FROM AppUser u WHERE u.active=TRUE";
+		query += " AND u.username=:user_name AND u.password=:password";
 		TypedQuery<AppUser> tQuery = em.createQuery(query, AppUser.class);
-		tQuery.setParameter("uname", user.trim());
-		tQuery.setParameter("pass", HashUtil.calc_HashSHA(password));
+		tQuery.setParameter("user_name", user.trim());
+		tQuery.setParameter("password", HashUtil.calc_HashSHA(password));
 		List<AppUser> results = tQuery.getResultList();
 
 		if (results.isEmpty()) {

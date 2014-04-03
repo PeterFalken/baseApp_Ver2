@@ -12,10 +12,10 @@
 					<r:panel rendered="#{!loggedIn}" styleClass="centered" style="width: 240px;">
 						<f:facet name="header">Enter your credentials.</f:facet>
 						<h:panelGrid columns="2">
-							<h:outputLabel for="username">User:</h:outputLabel>
-							<h:inputText id="username" value="#{credentials.username}" size="25" />
-							<h:outputLabel for="password">Pass:</h:outputLabel>
-							<h:inputSecret id="password" value="#{credentials.password}" size="25" />
+							<h:outputLabel>User:</h:outputLabel>
+							<h:inputText id="username" value="#{credentials.username}" required="true" size="25" />
+							<h:outputLabel>Pass:</h:outputLabel>
+							<h:inputSecret id="password" value="#{credentials.password}" required="true" size="25" />
 						</h:panelGrid>
 						<div style="text-align: center;">
 							<h:commandButton value="Enter" action="#{appSession.checkCredentials}" />
