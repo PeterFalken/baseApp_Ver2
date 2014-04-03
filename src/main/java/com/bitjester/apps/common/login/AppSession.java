@@ -84,7 +84,7 @@ public class AppSession implements Serializable {
 			this.systemUser = user;
 			// Check if user must change the password.
 			if (systemUser.getMustChangePassword())
-				FacesUtil.navTo("/aforms/password.xhtml");
+				FacesUtil.navTo("aforms/password.xhtml");
 			// If user has already changed the password.
 			systemUser.setActiveRole(systemUser.getAppRole(appName));
 			FacesUtil.addMessage("Welcome, " + systemUser.getName());
