@@ -40,7 +40,8 @@
 							<r:menuItem label="Change password" action="/aforms/password.xhtml?faces-redirect=true" />
 							<r:menuItem label="Logout" action="#{appSession.logout}" />
 						</r:dropDownMenu>
-						<h:graphicImage library="images/misc" name="bullet_red.png" rendered="#{activeUser.id != systemUser.id}" />
+						<h:graphicImage library="images/misc" name="bullet_red.png" rendered="#{activeUser.id != systemUser.id}"
+							style="margin-bottom: -4px;" />
 					</r:toolbarGroup>
 				</r:toolbar>
 			</r:region>
