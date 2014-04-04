@@ -33,7 +33,7 @@
 
 						<r:dropDownMenu>
 							<f:facet name="label">
-								<h:outputText value="#{(activeUser.id != systemUser.id) ? '* - ' : ''}" />
+								<h:graphicImage library="images/icons" name="yellow_lamp.gif" rendered=" #{activeUser.id != systemUser.id}" />
 								<h:outputText value="#{activeUser.name}" />
 							</f:facet>
 							<r:menuItem label="Change password" action="/aforms/password.xhtml?faces-redirect=true" />
