@@ -10,7 +10,7 @@ import javax.inject.Named;
 @RequestScoped
 public class ConverterForDate extends DateTimeConverter {
 	public ConverterForDate() {
-		setPattern("yy/MM/dd HH:mm");
+		setPattern("yyyy/MM/dd HH:mm");
 		setTimeZone(TimeZone.getTimeZone("America/El_Salvador"));
 	}
 }
