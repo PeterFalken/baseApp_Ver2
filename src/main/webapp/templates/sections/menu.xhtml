@@ -30,10 +30,9 @@
 							</f:facet>
 							<r:menuItem label="User management" action="/aforms/users.xhtml?faces-redirect=true" />
 						</r:dropDownMenu>
-
+						<h:graphicImage library="images/icons" name="yellow_lamp.gif" rendered="#{activeUser.id != systemUser.id}" />
 						<r:dropDownMenu>
 							<f:facet name="label">
-								<h:graphicImage library="images/icons" name="yellow_lamp.gif" rendered=" #{activeUser.id != systemUser.id}" />
 								<h:outputText value="#{activeUser.name}" />
 							</f:facet>
 							<r:menuItem label="Change password" action="/aforms/password.xhtml?faces-redirect=true" />
