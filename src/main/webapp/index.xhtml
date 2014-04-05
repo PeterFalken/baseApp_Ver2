@@ -17,6 +17,7 @@
 							<h:outputLabel>Pass:</h:outputLabel>
 							<h:inputSecret id="password" value="#{credentials.password}" required="true" size="25" />
 						</h:panelGrid>
+						<hr />
 						<div style="text-align: center;">
 							<h:commandButton value="Enter" action="#{appSession.checkCredentials}" />
 						</div>
@@ -25,7 +26,7 @@
 					<r:panel rendered="#{loggedIn}" styleClass="centered" style="width: 240px;">
 						<f:facet name="header">Welcome to #{appName}.</f:facet>
 						<p>Your credentials have been verified.</p>
-						<p>We need to draw the fancy circular menu :).</p>
+						<hr />
 						<div style="text-align: center;">
 							<h:commandButton value="Exit" action="#{appSession.logout}" />
 						</div>
