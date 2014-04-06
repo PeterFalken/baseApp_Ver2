@@ -100,18 +100,18 @@ public class AppSession implements Serializable {
 		}
 
 		// Verify if newPassword1 is the same as newPassword2
-		if (!creds.getNewPassword1().equals(creds.getNewPassword2())) {
+		if (!creds.getNewPass1().equals(creds.getNewPass2())) {
 			FacesUtil.addMessage("New password fields must match.");
 			return;
 		}
 
 		// Verify if new password is different from current password
-		if (creds.getPassword().equals(creds.getNewPassword1())) {
+		if (creds.getPassword().equals(creds.getNewPass1())) {
 			FacesUtil.addMessage("New password must be different from old password.");
 			return;
 		}
 
-		lm.changePassword(systemUser, creds.getNewPassword1());
+		lm.changePassword(systemUser, creds.getNewPass1());
 		systemUser = null;
 		// FacesUtil.invalidateSession();
 		FacesUtil.navTo("error/pchanged.xhtml");

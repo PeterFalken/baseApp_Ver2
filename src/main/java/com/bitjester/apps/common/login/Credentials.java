@@ -10,8 +10,8 @@ public class Credentials {
 	private String username;
 	private String password;
 	// Used when the user want to change the password for the account.
-	private String newPassword1;
-	private String newPassword2;
+	private String newPass1;
+	private String newPass2;
 
 	public String getUsername() {
 		return username;
@@ -29,19 +29,19 @@ public class Credentials {
 		this.password = password;
 	}
 
-	public String getNewPassword1() {
-		return newPassword1;
+	public String getNewPass1() {
+		return newPass1;
 	}
 
-	public void setNewPassword1(String newPassword1) {
-		this.newPassword1 = newPassword1;
+	public void setNewPass1(String newPass1) {
+		this.newPass1 = newPass1;
 	}
 
-	public String getNewPassword2() {
-		return newPassword2;
+	public String getNewPass2() {
+		return newPass2;
 	}
 
-	public void setNewPassword2(String newPassword2) {
-		this.newPassword2 = newPassword2;
+	public void setNewPass2(String newPass2) {
+		this.newPass2 = newPass2;
 	}
 }
