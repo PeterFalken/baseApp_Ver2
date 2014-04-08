@@ -15,17 +15,19 @@
 		<h:graphicImage library="images" name="wait.gif" />
 	</r:popupPanel>
 	<!-- END: Busy indicator for AJAX calls (System wide) -->
+	
+	<!-- START: This DIV will keep everything (content) centered and off the edges -->
+	<div class="centered" style="width: 94%;">
+		<ui:include src="sections/menu.xhtml" />
+		<br />
 
-	<ui:include src="sections/menu.xhtml" />
-	<br />
-
-	<div class="centered" style="width: 92%;">
 		<ui:insert name="content" />
+
+		<br />
+		<ui:insert name="footer" />
 	</div>
-
-	<br />
-	<ui:insert name="footer" />
-
+	<!-- END: This DIV will keep everything (content) centered and off the edges -->
+	
 </h:body>
 </html>
 
