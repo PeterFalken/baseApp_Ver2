@@ -13,13 +13,15 @@ public class DataManager implements Serializable {
 	@Inject
 	private EntityManager em;
 
-	public void store(BaseEntity entity) throws Exception {
+	public BaseEntity store(BaseEntity entity) throws Exception {
+		BaseEntity be = null;
 		if (null == entity.getId()) {
 			em.persist(entity);
 		} else {
-			em.merge(entity);
+			be = em.merge(entity);
 		}
 		em.flush();
+		return be;
 	}
 
 	public void remove(BaseEntity entity) throws Exception {
