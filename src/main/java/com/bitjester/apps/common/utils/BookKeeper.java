@@ -59,7 +59,7 @@ public class BookKeeper implements Serializable {
 		}
 	}
 
-	public void store(BaseEntity entity) throws Exception {
+	public BaseEntity store(BaseEntity entity) throws Exception {
 		try {
 			if (null == entity.getId()) {
 				// Entity is new and will be persisted
@@ -70,7 +70,7 @@ public class BookKeeper implements Serializable {
 				entity.setUpdateTime(new Date(System.currentTimeMillis()));
 				entity.setUpdateUser(userInfo());
 			}
-			dt.store(entity);
+			return dt.store(entity);
 		} catch (Exception e) {
 			log(e.getMessage());
 			e.printStackTrace();
