@@ -14,6 +14,9 @@ public class DataManager implements Serializable {
 	private EntityManager em;
 
 	public BaseEntity store(BaseEntity entity) throws Exception {
+		if (null == entity)
+			throw new Exception("Method trying to store null on Persistence Context.");
+
 		BaseEntity be = null;
 		if (null == entity.getId()) {
 			em.persist(entity);
@@ -25,9 +28,10 @@ public class DataManager implements Serializable {
 	}
 
 	public void remove(BaseEntity entity) throws Exception {
-		if (null != entity) {
-			em.remove(entity);
-			em.flush();
-		}
+		if (null == entity)
+			throw new Exception("Method trying to remove null from Persistence Context.");
+
+		em.remove(entity);
+		em.flush();
 	}
 }
