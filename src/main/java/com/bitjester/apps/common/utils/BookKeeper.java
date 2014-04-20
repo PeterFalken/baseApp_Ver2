@@ -2,6 +2,7 @@ package com.bitjester.apps.common.utils;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Logger;
 
 import javax.enterprise.context.SessionScoped;
@@ -44,6 +45,16 @@ public class BookKeeper implements Serializable {
 		if (null != userSession && null != userSession.getActiveUser())
 			return userSession.getActiveUser().getId() + " - " + userSession.getActiveUser().getUsername();
 		return "0 - System";
+	}
+
+	public int executeUpdate(String query, List<Object> params) throws Exception {
+		try {
+			return dt.executeUpdate(query, params);
+		} catch (Exception e) {
+			log(e.getMessage());
+			e.printStackTrace();
+			throw e;
+		}
 	}
 
 	public void remove(BaseEntity entity) throws Exception {

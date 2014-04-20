@@ -1,10 +1,13 @@
 package com.bitjester.apps.common;
 
 import java.io.Serializable;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 @Stateless
 public class DataManager implements Serializable {
@@ -12,6 +15,24 @@ public class DataManager implements Serializable {
 
 	@Inject
 	private EntityManager em;
+
+	public int executeUpdate(String query, List<Object> params) throws Exception {
+		if (null == query)
+			throw new Exception("Method trying to execute update with null query string.");
+
+		int i = 0;
+		Query q = em.createQuery(query);
+
+		// Process parameters if any.
+		if (null != params) {
+			Iterator<Object> ite = params.iterator();
+			while (ite.hasNext()) {
+				q.setParameter(i++, ite.next());
+			}
+		}
+
+		return q.executeUpdate();
+	}
 
 	public BaseEntity store(BaseEntity entity) throws Exception {
 		if (null == entity)
