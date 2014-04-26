@@ -20,7 +20,7 @@ import com.bitjester.apps.common.utils.BookKeeper;
 
 @Cacheable
 @Entity
-@Table(name = "users", uniqueConstraints = @UniqueConstraint(columnNames = { "username" }))
+@Table(name = "app_users", uniqueConstraints = @UniqueConstraint(columnNames = { "username" }))
 public class AppUser extends BaseEntity {
 	private static final long serialVersionUID = 1L;
 

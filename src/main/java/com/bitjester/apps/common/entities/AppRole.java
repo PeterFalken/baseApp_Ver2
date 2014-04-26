@@ -12,7 +12,7 @@ import com.bitjester.apps.common.BaseEntity;
 
 @Cacheable
 @Entity
-@Table(name = "roles", uniqueConstraints = @UniqueConstraint(columnNames = { "system_user", "application" }))
+@Table(name = "app_roles", uniqueConstraints = @UniqueConstraint(columnNames = { "system_user", "application" }))
 public class AppRole extends BaseEntity {
 	private static final long serialVersionUID = 1L;
 
