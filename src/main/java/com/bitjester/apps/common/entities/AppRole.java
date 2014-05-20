@@ -3,6 +3,7 @@ package com.bitjester.apps.common.entities;
 import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Index;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -12,7 +13,8 @@ import com.bitjester.apps.common.BaseEntity;
 
 @Cacheable
 @Entity
-@Table(name = "app_roles", uniqueConstraints = @UniqueConstraint(columnNames = { "system_user", "application" }))
+@Table(name = "app_roles", uniqueConstraints = @UniqueConstraint(columnNames = { "system_user", "application" }), indexes = {
+		@Index(columnList = "system_user"), @Index(columnList = "application") })
 public class AppRole extends BaseEntity {
 	private static final long serialVersionUID = 1L;
 

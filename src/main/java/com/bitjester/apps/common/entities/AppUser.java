@@ -10,6 +10,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.Index;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -20,7 +21,8 @@ import com.bitjester.apps.common.utils.BookKeeper;
 
 @Cacheable
 @Entity
-@Table(name = "app_users", uniqueConstraints = @UniqueConstraint(columnNames = { "username" }))
+@Table(name = "app_users", uniqueConstraints = @UniqueConstraint(columnNames = { "username" }), indexes = {
+		@Index(columnList = "active"), @Index(columnList = "username"), @Index(columnList = "name") })
 public class AppUser extends BaseEntity {
 	private static final long serialVersionUID = 1L;
 
