@@ -18,7 +18,7 @@ import com.bitjester.apps.common.utils.HashUtil;
 public class LoginManager {
 	@Inject
 	EntityManager em;
-	
+
 	@Inject
 	Integer login_limit;
 
@@ -75,6 +75,7 @@ public class LoginManager {
 		AppUser user = em.find(AppUser.class, userID);
 		BookKeeper.update(user, "0 - System");
 		user.setPassword(HashUtil.calc_HashSHA("123456"));
+		user.setActive(Boolean.TRUE);
 		user.setMustChangePassword(Boolean.TRUE);
 		em.merge(user);
 		em.flush();
