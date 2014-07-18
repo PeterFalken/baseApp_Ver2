@@ -41,6 +41,10 @@
 										</h:outputText>
 									</r:column>
 									<r:column styleClass="tcentered">
+										<f:facet name="header">.</f:facet>
+										<h:outputText value="#{u.attempts}" />
+									</r:column>
+									<r:column styleClass="tcentered">
 										<f:facet name="header">Active</f:facet>
 										<h:selectBooleanCheckbox value="#{u.active}" disabled="true" />
 									</r:column>
