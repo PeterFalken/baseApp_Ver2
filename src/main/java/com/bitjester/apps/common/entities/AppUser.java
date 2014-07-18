@@ -28,6 +28,7 @@ public class AppUser extends BaseEntity {
 
 	private Boolean active;
 	private Boolean mustChangePassword;
+	private int attempts;
 	private Date lastLogin;
 	private Date lastLogout;
 	private String name;
@@ -103,6 +104,14 @@ public class AppUser extends BaseEntity {
 	public void setMustChangePassword(Boolean mustChangePassword) {
 		this.mustChangePassword = mustChangePassword;
 	}
+	
+	public int getAttempts() {
+		return attempts;
+	}
+
+	public void setAttempts(int attempts) {
+		this.attempts = attempts;
+	}
 
 	public Date getLastLogin() {
 		return lastLogin;
@@ -159,5 +168,4 @@ public class AppUser extends BaseEntity {
 	public void setRoles(List<AppRole> roles) {
 		this.roles = roles;
 	}
-
 }

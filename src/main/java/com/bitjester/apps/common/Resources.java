@@ -14,6 +14,11 @@ public class Resources {
 	@Named
 	@Produces
 	private String appName = "base2App";
+	
+	// Defines login attempts limit
+	@Named
+	@Produces
+	private Integer login_limit = 5;
 
 	// Expose an entity manager using the resource producer pattern
 	@Produces

@@ -18,6 +18,9 @@ import com.bitjester.apps.common.utils.HashUtil;
 public class LoginManager {
 	@Inject
 	EntityManager em;
+	
+	@Inject
+	Integer login_limit;
 
 	public void changePassword(AppUser user, String newPassword) throws Exception {
 		user = em.merge(user);
@@ -28,21 +31,32 @@ public class LoginManager {
 	}
 
 	public AppUser checkCredentials(String user, String password) throws Exception {
-		String query = "SELECT u FROM AppUser u WHERE u.active=TRUE";
-		query += " AND u.username=:user_name AND u.password=:password";
+		String query = "SELECT u FROM AppUser u WHERE u.active=TRUE AND u.username=:user_name";
 		TypedQuery<AppUser> tQuery = em.createQuery(query, AppUser.class);
 		tQuery.setParameter("user_name", user.trim());
-		tQuery.setParameter("password", HashUtil.calc_HashSHA(password));
 		List<AppUser> results = tQuery.getResultList();
 
 		if (results.isEmpty()) {
 			// User not found.
 			return null;
 		} else {
-			BookKeeper.update(results.get(0), "0 - System");
-			results.get(0).setLastLogin(new Date(System.currentTimeMillis()));
+			// User found - we need to check if password matches.
+			AppUser app_user = results.get(0);
+			BookKeeper.update(app_user, "0 - System");
+
+			if (app_user.getPassword().equals(HashUtil.calc_HashSHA(password.trim()))) {
+				// Password match.
+				app_user.setLastLogin(new Date(System.currentTimeMillis()));
+				app_user.setAttempts(0);
+			} else {
+				// Password doesn't match - we log a new login attempt.
+				app_user.setAttempts(app_user.getAttempts() + 1);
+				if (login_limit.intValue() > app_user.getAttempts())
+					// After too many failed attempts user is deactivated.
+					app_user.setActive(Boolean.FALSE);
+			}
 			em.flush();
-			return results.get(0);
+			return app_user.getActive() ? app_user : null;
 		}
 	}
 
