@@ -9,12 +9,12 @@
 			<property name="hibernate.cache.use_second_level_cache" value="true" />
 			<property name="hibernate.cache.use_minimal_puts" value="true" />
 			<!-- END: Enable second level cache -->
-			
+
 			<!-- START: Hibernate - Enable database creation/update -->
-			<property name="hibernate.hbm2ddl.auto" value="create" />
+			<property name="hibernate.hbm2ddl.auto" value="create-drop" />
 			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL9Dialect" />
 			<!-- END: Hibernate - Enable database creation/update -->
-			
+
 			<!-- START: Hibernate - Enable debugging settings -->
 			<property name="hibernate.generate_statistics" value="false" />
 			<property name="hibernate.show_sql" value="false" />
