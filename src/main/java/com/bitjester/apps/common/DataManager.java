@@ -55,4 +55,14 @@ public class DataManager implements Serializable {
 		em.remove(entity);
 		em.flush();
 	}
+	
+	public void remove(String type, Object id) throws Exception {
+		BaseEntity entity = (BaseEntity) em.find(Class.forName(type), id);
+		
+		if (null == entity)
+			throw new Exception("Method trying to remove null from Persistence Context.");
+
+		em.remove(entity);
+		em.flush();
+	}
 }

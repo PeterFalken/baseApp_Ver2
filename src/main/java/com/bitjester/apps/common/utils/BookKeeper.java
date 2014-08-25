@@ -57,12 +57,12 @@ public class BookKeeper implements Serializable {
 		}
 	}
 
-	public void remove(BaseEntity entity) throws Exception {
+	public void remove(String type, Long id) throws Exception {
 		try {
 			logger.info("Delete: " + System.currentTimeMillis());
 			logger.info("User: " + userInfo());
-			logger.info("Deleting: " + entity);
-			dt.remove(entity);
+			logger.info("Deleting: " + id + "::" + type);
+			dt.remove(type, id);
 		} catch (Exception e) {
 			log(e.getMessage());
 			e.printStackTrace();
