@@ -90,7 +90,7 @@ public class ViewUsers implements Serializable {
 				managedUser.setAppRole(appName, "user");
 				managedUser.setPassword(HashUtil.calc_HashSHA("123456"));
 			} else {
-				// For existing users we update their role if necesary.
+				// For existing users we update their role if necessary.
 				managedUser.setAppRole(appName, managedUser.getActiveRole());
 			}
 			bk.store(managedUser);
