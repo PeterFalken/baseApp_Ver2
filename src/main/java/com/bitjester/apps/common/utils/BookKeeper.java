@@ -57,7 +57,7 @@ public class BookKeeper implements Serializable {
 		}
 	}
 
-	public void remove(String type, Long id) throws Exception {
+	public void remove(Class type, Long id) throws Exception {
 		try {
 			logger.info("Delete: " + System.currentTimeMillis());
 			logger.info("User: " + userInfo());

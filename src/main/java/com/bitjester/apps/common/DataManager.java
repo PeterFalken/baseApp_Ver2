@@ -56,8 +56,8 @@ public class DataManager implements Serializable {
 		em.flush();
 	}
 	
-	public void remove(String type, Object id) throws Exception {
-		BaseEntity entity = (BaseEntity) em.find(Class.forName(type), id);
+	public void remove(Class type, Object id) throws Exception {
+		BaseEntity entity = (BaseEntity) em.find(type, id);
 		
 		if (null == entity)
 			throw new Exception("Method trying to remove null from Persistence Context.");

@@ -9,7 +9,7 @@ public abstract class CodeUtil {
 		if (null == r)
 			r = new Random();
 		String base = "xxxx-xxxx-xxxx-" + z + "xxx-xxxx";
-		base.replaceAll("[x]", Integer.toHexString(r.nextInt(16)));
+		base.replaceAll("x", Integer.toHexString(r.nextInt(16)));
 		return base;
 	}
 }
