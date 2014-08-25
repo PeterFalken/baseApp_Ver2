@@ -48,10 +48,9 @@ public class DataManager implements Serializable {
 		return be;
 	}
 
-	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public void remove(Class type, Long id) throws Exception {
-		BaseEntity entity = (BaseEntity) em.find(type, id);
-		
+	public void remove(BaseEntity entity) throws Exception {
+		entity = em.find(entity.getClass(), entity.getId());
+
 		if (null == entity)
 			throw new Exception("Method trying to remove null from Persistence Context.");
 

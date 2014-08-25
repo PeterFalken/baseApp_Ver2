@@ -8,6 +8,7 @@ public abstract class CodeUtil {
 	public static String generateCode(char z) {
 		if (null == r)
 			r = new Random();
+		System.out.println("Random: " + r);
 		String base = "xxxx-xxx" + z + "-" + z + "xxx-xxxx";
 		while (base.contains("x"))
 			base = base.replaceFirst("[x]", Integer.toHexString(r.nextInt(16)));

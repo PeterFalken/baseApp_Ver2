@@ -57,17 +57,15 @@ public class BookKeeper implements Serializable {
 		}
 	}
 
-	@SuppressWarnings("rawtypes")
-	public void remove(Class type, Long id) throws Exception {
+	public void remove(BaseEntity entity) throws Exception {
 		try {
 			logger.info("Delete: " + System.currentTimeMillis());
 			logger.info("User: " + userInfo());
-			logger.info("Deleting: " + id + "::" + type);
-			dt.remove(type, id);
+			logger.info("Deleting: " + entity.getId() + "::" + entity);
+			dt.remove(entity);
 		} catch (Exception e) {
 			log(e.getMessage());
 			e.printStackTrace();
-			throw e;
 		}
 	}
 
