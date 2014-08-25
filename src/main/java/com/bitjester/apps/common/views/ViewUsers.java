@@ -77,7 +77,7 @@ public class ViewUsers implements Serializable {
 
 	public void remove(Long id) {
 		try {
-			bk.remove(AppUser.class.toString(), id);
+			bk.remove(AppUser.class.getSimpleName(), id);
 		} catch (Exception e) {
 			FacesUtil.addMessage("Error ocurred, please reload page and try again.");
 		}
