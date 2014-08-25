@@ -44,7 +44,6 @@ public class AppUser extends BaseEntity {
 	private List<AppRole> roles;
 
 	// Constructor
-
 	public AppUser() {
 		super();
 		active = Boolean.TRUE;
@@ -54,7 +53,6 @@ public class AppUser extends BaseEntity {
 	}
 
 	// Role methods
-
 	public String getAppRole(String app) {
 		Iterator<AppRole> iteR = roles.iterator();
 		AppRole role = null;
