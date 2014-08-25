@@ -18,6 +18,7 @@ import javax.persistence.UniqueConstraint;
 
 import com.bitjester.apps.common.BaseEntity;
 import com.bitjester.apps.common.utils.BookKeeper;
+import com.bitjester.apps.common.utils.CodeUtil;
 
 @Cacheable
 @Entity
@@ -35,6 +36,7 @@ public class AppUser extends BaseEntity {
 	@Column(length = 100)
 	private String username;
 	private String password;
+	private String notes;
 
 	@Transient
 	private String activeRole;
@@ -48,6 +50,7 @@ public class AppUser extends BaseEntity {
 		active = Boolean.TRUE;
 		mustChangePassword = Boolean.TRUE;
 		roles = new ArrayList<AppRole>(0);
+		notes = CodeUtil.generateCode('U');
 	}
 
 	// Role methods
@@ -151,6 +154,14 @@ public class AppUser extends BaseEntity {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getNotes() {
+		return notes;
+	}
+
+	public void setNotes(String notes) {
+		this.notes = notes;
 	}
 
 	public String getActiveRole() {
