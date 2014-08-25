@@ -57,6 +57,7 @@ public class BookKeeper implements Serializable {
 		}
 	}
 
+	@SuppressWarnings("rawtypes")
 	public void remove(Class type, Long id) throws Exception {
 		try {
 			logger.info("Delete: " + System.currentTimeMillis());
