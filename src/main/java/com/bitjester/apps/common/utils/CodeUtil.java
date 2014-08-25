@@ -8,8 +8,7 @@ public abstract class CodeUtil {
 	public static String generateCode(char z) {
 		if (null == r)
 			r = new Random();
-		String base = z + "xxx-xxxx-xxxx-" + z + "xxx-xxxx";
-		base = base.replaceAll("[x]", Integer.toHexString(r.nextInt(16)));
-		return base;
+		String base = "xxxx-xxx" + z + "-" + z + "xxx-xxxx";
+		return base.replace("x", Integer.toHexString(r.nextInt(16))).toUpperCase();
 	}
 }
