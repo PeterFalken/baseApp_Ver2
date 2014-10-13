@@ -22,7 +22,6 @@ public class DataManager implements Serializable {
 
 		int i = 0;
 		Query q = em.createQuery(query);
-
 		// Process parameters if any.
 		if (null != params) {
 			Iterator<Object> ite = params.iterator();
@@ -30,7 +29,6 @@ public class DataManager implements Serializable {
 				q.setParameter(i++, ite.next());
 			}
 		}
-
 		return q.executeUpdate();
 	}
 
